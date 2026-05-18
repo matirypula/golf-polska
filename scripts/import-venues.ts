@@ -59,7 +59,7 @@ async function main() {
   if (!filePath) throw new Error('Missing CSV path');
 
   const csv = fs.readFileSync(filePath, 'utf8');
-  const records = parse(csv, { columns: true, skip_empty_lines: true });
+  const records = parse(csv, { columns: true, skip_empty_lines: true }) as Record<string, string>[];
   const venues = records.map(normalizeRow).filter((x) => x.name);
 
   const { error } = await supabase
