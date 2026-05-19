@@ -48,15 +48,15 @@ const featuredVenues = await getFeaturedVenues();
 </nav>
 
       <a
-        href="#"
-        className="rounded-2xl bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-emerald-700"
+        href="/admin/new"
+        className="rounded-2xl bg-emerald-500 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-emerald-500/30 transition hover:scale-105 hover:bg-emerald-400"
       >
         Dodaj obiekt
       </a>
     </div>
   </header>
       <section
-  className="relative overflow-hidden border-b border-slate-200 bg-slate-950"
+  className="relative overflow-hidden border-b border-slate-200 bg-slate-950 before:absolute before:left-1/2 before:top-0 before:h-[600px] before:w-[600px] before:-translate-x-1/2 before:rounded-full before:bg-emerald-500/20 before:blur-3xl before:content-['']"
   style={{
     backgroundImage:
       "linear-gradient(to bottom, rgba(2,6,23,0.45), rgba(2,6,23,0.92)), url(https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?auto=format&fit=crop&w=1800&q=80)",
@@ -69,7 +69,7 @@ const featuredVenues = await getFeaturedVenues();
             <p className="inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-white backdrop-blur">
               Golf Polska
             </p>
-            <h1 className="mt-10 max-w-5xl text-5xl font-black leading-[0.9] tracking-tight text-white md:text-7xl">
+            <h1 className="mt-10 max-w-5xl text-5xl font-black leading-[0.9] tracking-tight text-white drop-shadow-2xl md:text-8xl">
               Pola golfowe i driving range w Polsce
             </h1>
             <p className="mt-5 max-w-3xl text-xl leading-9 text-white/85">
