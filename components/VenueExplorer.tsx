@@ -1,14 +1,24 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { VenueCard } from "@/components/VenueCard";
 import type { Venue } from "@/lib/venues";
 
 export function VenueExplorer({ venues }: { venues: Venue[] }) {
-  const [query, setQuery] = useState("");
-  const [region, setRegion] = useState("Wszystkie");
-  const [type, setType] = useState("Wszystkie");
-  const [facility, setFacility] = useState("Wszystkie");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+const initialType = searchParams.get("type") || "Wszystkie";
+  const [query, setQuery] = useState(
+  searchParams.get("q") || ""
+);
+  const [region, setRegion] = useState(
+  searchParams.get("region") || "Wszystkie"
+);
+  const [type, setType] = useState(initialType);
+  const [facility, setFacility] = useState(
+  searchParams.get("facility") || "Wszystkie"
+);
 
   const regions = useMemo(() => {
     return [
@@ -80,14 +90,42 @@ export function VenueExplorer({ venues }: { venues: Venue[] }) {
         <div className="grid gap-4 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <input
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+  const value = e.target.value;
+
+  setQuery(value);
+
+  const params = new URLSearchParams(searchParams);
+
+  if (!value) {
+    params.delete("q");
+  } else {
+    params.set("q", value);
+  }
+
+  router.push(`/?${params.toString()}`);
+}}
             placeholder="Szukaj: nazwa, miasto, województwo..."
             className="rounded-2xl bg-slate-100 px-5 py-4 font-semibold outline-none"
           />
 
           <select
             value={region}
-            onChange={(e) => setRegion(e.target.value)}
+            onChange={(e) => {
+  const value = e.target.value;
+
+  setRegion(value);
+
+  const params = new URLSearchParams(searchParams);
+
+  if (value === "Wszystkie") {
+    params.delete("region");
+  } else {
+    params.set("region", value);
+  }
+
+  router.push(`/?${params.toString()}`);
+}}
             className="rounded-2xl bg-slate-100 px-5 py-4 font-semibold outline-none"
           >
             {regions.map((item) => (
@@ -97,7 +135,21 @@ export function VenueExplorer({ venues }: { venues: Venue[] }) {
 
           <select
             value={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => {
+  const value = e.target.value;
+
+  setType(value);
+
+  const params = new URLSearchParams(searchParams);
+
+  if (value === "Wszystkie") {
+    params.delete("type");
+  } else {
+    params.set("type", value);
+  }
+
+  router.push(`/?${params.toString()}`);
+}}
             className="rounded-2xl bg-slate-100 px-5 py-4 font-semibold outline-none"
           >
             {types.map((item) => (
@@ -107,7 +159,21 @@ export function VenueExplorer({ venues }: { venues: Venue[] }) {
 
           <select
             value={facility}
-            onChange={(e) => setFacility(e.target.value)}
+            onChange={(e) => {
+  const value = e.target.value;
+
+  setFacility(value);
+
+  const params = new URLSearchParams(searchParams);
+
+  if (value === "Wszystkie") {
+    params.delete("facility");
+  } else {
+    params.set("facility", value);
+  }
+
+  router.push(`/?${params.toString()}`);
+}}
             className="rounded-2xl bg-slate-100 px-5 py-4 font-semibold outline-none"
           >
             {facilities.map((item) => (
@@ -137,6 +203,7 @@ export function VenueExplorer({ venues }: { venues: Venue[] }) {
               setRegion("Wszystkie");
               setType("Wszystkie");
               setFacility("Wszystkie");
+              router.push("/");
             }}
             className="rounded-2xl border border-slate-200 bg-white px-5 py-3 font-bold text-slate-700 transition hover:bg-slate-100"
           >

@@ -41,11 +41,11 @@ const featuredVenues = await getFeaturedVenues();
       </div>
 
       <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-600 md:flex">
-        <a href="#" className="hover:text-slate-950">Mapa</a>
-        <a href="#" className="hover:text-slate-950">Pola golfowe</a>
-        <a href="#" className="hover:text-slate-950">Driving range</a>
-        <a href="#" className="hover:text-slate-950">Akademie</a>
-      </nav>
+  <a href="/mapa" className="hover:text-slate-950">Mapa</a>
+  <a href="/?type=Pole golfowe" className="hover:text-slate-950">Pola golfowe</a>
+  <a href="/?type=Driving range" className="hover:text-slate-950">Driving range</a>
+  <a href="/?type=Akademia golfa" className="hover:text-slate-950">Akademie</a>
+</nav>
 
       <a
         href="#"
