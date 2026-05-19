@@ -4,6 +4,7 @@ import { getVenues } from "@/lib/venues";
 import { supabase } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { AdminGuard } from "@/components/AdminGuard";
 
 
 export default function AdminPage() {
@@ -64,6 +65,7 @@ async function logout() {
   router.push("/admin/login");
 }
   return (
+  <AdminGuard>
     <main className="min-h-screen bg-slate-50 p-10">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex items-center justify-between">
@@ -210,5 +212,6 @@ async function logout() {
         </div>
       </div>
     </main>
+</AdminGuard>
   );
 }

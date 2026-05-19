@@ -8,8 +8,12 @@ import L from "leaflet";
 
 export default function VenuesMap({ venues }: { venues: Venue[] }) {
   const validVenues = venues.filter(
-    (venue) => venue.latitude && venue.longitude
-  );
+  (venue) =>
+    venue.latitude !== null &&
+    venue.latitude !== undefined &&
+    venue.longitude !== null &&
+    venue.longitude !== undefined
+);
 
   delete (L.Icon.Default.prototype as any)._getIconUrl;
 
@@ -38,7 +42,10 @@ L.Icon.Default.mergeOptions({
         {validVenues.map((venue) => (
           <Marker
             key={venue.slug}
-            position={[Number(venue.latitude), Number(venue.longitude)] as any}
+            position={[
+  parseFloat(String(venue.latitude)),
+  parseFloat(String(venue.longitude)),
+]}
           >
             <Popup>
               <div>

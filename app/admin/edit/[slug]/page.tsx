@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { AdminGuard } from "@/components/AdminGuard";
 
 export default function EditVenuePage({
   params,
@@ -134,6 +135,7 @@ async function uploadImage(file: File) {
   }
 
   return (
+  <AdminGuard>
     <main className="min-h-screen bg-slate-50 px-6 py-12">
       <div className="mx-auto max-w-4xl">
         <a href="/admin" className="font-bold text-slate-600">
@@ -274,5 +276,6 @@ async function uploadImage(file: File) {
         </div>
       </div>
     </main>
+</AdminGuard>
   );
 }

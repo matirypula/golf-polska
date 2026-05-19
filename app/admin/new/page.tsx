@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../../lib/supabase";
+import { AdminGuard } from "@/components/AdminGuard";
 
 export default function NewVenuePage() {
     const router = useRouter();
@@ -134,6 +135,7 @@ if (data?.slug) {
   }
 
   return (
+  <AdminGuard>
     <main className="min-h-screen bg-slate-50 px-6 py-12">
       <div className="mx-auto max-w-4xl">
         <a href="/admin" className="font-bold text-slate-600">
@@ -351,5 +353,6 @@ if (data?.slug) {
         </div>
       </div>
     </main>
+</AdminGuard>
   );
 }
