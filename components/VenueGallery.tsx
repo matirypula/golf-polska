@@ -19,6 +19,7 @@ export function VenueGallery({
   return (
     <div className="space-y-4">
       <img
+      loading="lazy"
         src={active}
         alt=""
         className="h-[500px] w-full rounded-[2rem] object-cover"
@@ -36,6 +37,7 @@ export function VenueGallery({
             }`}
           >
             <img
+            loading="lazy"
               src={image}
               alt=""
               className="h-32 w-full object-cover"
